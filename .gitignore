@@ -147,3 +147,6 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+# Base de datos local (se crea sola al iniciar la API)
+backend/*.db
+backend/*.sqlite
