@@ -1,1 +1,71 @@
-<h2>Formulario de ticket</h2>
+<section>
+  <h2>{{ esEdicion ? 'Editar ticket #' + ticketId : 'Nuevo ticket' }}</h2>
+
+  @if (error()) {
+    <div class="alerta-error" role="alert">{{ error() }}</div>
+  }
+
+  <form [formGroup]="formulario" (ngSubmit)="guardar()">
+    <div class="campo">
+      <label for="asunto">Asunto</label>
+      <input id="asunto" type="text" formControlName="asunto" />
+      @if (mensajeError('asunto'); as msg) {
+        <small class="error-campo">{{ msg }}</small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="solicitante">Solicitante</label>
+      <input id="solicitante" type="text" formControlName="solicitante" />
+      @if (mensajeError('solicitante'); as msg) {
+        <small class="error-campo">{{ msg }}</small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="descripcion">Descripción del problema</label>
+      <textarea id="descripcion" formControlName="descripcion"></textarea>
+      @if (mensajeError('descripcion'); as msg) {
+        <small class="error-campo">{{ msg }}</small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="categoria">Categoría</label>
+      <select id="categoria" formControlName="categoria">
+        <option value="" disabled>Seleccione una categoría...</option>
+        @for (c of categorias; track c) {
+          <option [value]="c">{{ c }}</option>
+        }
+      </select>
+      @if (mensajeError('categoria'); as msg) {
+        <small class="error-campo">{{ msg }}</small>
+      }
+    </div>
+
+    <div class="campo">
+      <label for="prioridad">Prioridad</label>
+      <select id="prioridad" formControlName="prioridad">
+        @for (p of prioridades; track p) {
+          <option [value]="p">{{ p }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="campo">
+      <label for="estado">Estado</label>
+      <select id="estado" formControlName="estado">
+        @for (e of estados; track e) {
+          <option [value]="e">{{ e }}</option>
+        }
+      </select>
+    </div>
+
+    <div class="botones-form">
+      <button type="submit" [disabled]="enviando()">
+        {{ esEdicion ? 'Guardar cambios' : 'Crear ticket' }}
+      </button>
+      <a class="boton-secundario" routerLink="/tickets">Cancelar</a>
+    </div>
+  </form>
+</section>
