@@ -1,1 +1,51 @@
-<h2>Listado de tickets</h2>
+<section>
+  <div class="encabezado">
+    <h2>Listado de tickets</h2>
+    <a class="boton" routerLink="/tickets/nuevo">+ Nuevo ticket</a>
+  </div>
+
+  @if (error()) {
+    <div class="alerta-error" role="alert">
+      {{ error() }}
+      <button type="button" class="boton-secundario" (click)="cargar()">Reintentar</button>
+    </div>
+  }
+
+  @if (cargando()) {
+    <p>Cargando tickets...</p>
+  } @else if (tickets().length > 0) {
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Asunto</th>
+          <th>Solicitante</th>
+          <th>Categoría</th>
+          <th>Prioridad</th>
+          <th>Estado</th>
+          <th>Registrado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (t of tickets(); track t.id) {
+          <tr>
+            <td>{{ t.id }}</td>
+            <td [title]="t.descripcion">{{ t.asunto }}</td>
+            <td>{{ t.solicitante }}</td>
+            <td>{{ t.categoria }}</td>
+            <td><span class="insignia" [class]="clasePrioridad(t.prioridad)">{{ t.prioridad }}</span></td>
+            <td><span class="insignia" [class]="claseEstado(t.estado)">{{ t.estado }}</span></td>
+            <td>{{ fecha(t) | date: 'dd/MM/yyyy HH:mm' }}</td>
+            <td class="acciones">
+              <a class="boton-secundario" [routerLink]="['/tickets/editar', t.id]">Editar</a>
+              <button type="button" class="boton-peligro" (click)="eliminar(t)">Eliminar</button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  } @else if (!error()) {
+    <p>No hay tickets registrados todavía.</p>
+  }
+</section>

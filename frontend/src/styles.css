@@ -1,1 +1,82 @@
-/* You can add global styles to this file, and also import other style files */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  background: #f4f6f9;
+  color: #1f2937;
+}
+
+header {
+  background: #1e3a5f;
+  color: #fff;
+  padding: 12px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+header h1 { margin: 0; font-size: 1.3rem; }
+nav { display: flex; gap: 8px; }
+nav a { color: #cbd5e1; text-decoration: none; padding: 6px 12px; border-radius: 6px; }
+nav a:hover { background: rgba(255, 255, 255, 0.12); }
+nav a.activo { background: #fff; color: #1e3a5f; font-weight: 600; }
+
+main { max-width: 1100px; margin: 24px auto; padding: 0 16px; }
+
+.encabezado { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+.encabezado h2 { margin: 0; }
+
+/* Botones */
+.boton, .boton-secundario, .boton-peligro, button[type='submit'] {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+.boton, button[type='submit'] { background: #2563eb; color: #fff; }
+.boton:hover, button[type='submit']:hover { background: #1d4ed8; }
+button[disabled] { opacity: 0.6; cursor: not-allowed; }
+.boton-secundario { background: #fff; color: #1f2937; border-color: #cbd5e1; }
+.boton-secundario:hover { background: #f1f5f9; }
+.boton-peligro { background: #fff; color: #b91c1c; border-color: #fca5a5; }
+.boton-peligro:hover { background: #fee2e2; }
+
+/* Tabla */
+table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); }
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid #e5e7eb; font-size: 0.9rem; }
+th { background: #f1f5f9; font-weight: 600; }
+.acciones { display: flex; gap: 6px; }
+
+/* Insignias de prioridad y estado (el texto siempre acompaña al color) */
+.insignia { padding: 3px 10px; border-radius: 999px; font-size: 0.8rem; font-weight: 600; white-space: nowrap; }
+.prioridad-baja { background: #dcfce7; color: #166534; }
+.prioridad-media { background: #fef3c7; color: #92400e; }
+.prioridad-alta { background: #fee2e2; color: #991b1b; }
+.estado-abierto { background: #dbeafe; color: #1e40af; }
+.estado-proceso { background: #ede9fe; color: #5b21b6; }
+.estado-cerrado { background: #e5e7eb; color: #374151; }
+
+/* Alertas */
+.alerta-error {
+  background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5;
+  padding: 12px 16px; border-radius: 8px; margin-bottom: 16px;
+  display: flex; justify-content: space-between; align-items: center; gap: 12px;
+}
+
+/* Formulario */
+form { background: #fff; padding: 24px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); max-width: 640px; }
+.campo { display: flex; flex-direction: column; margin-bottom: 16px; }
+.campo label { font-weight: 600; margin-bottom: 4px; }
+.campo input, .campo select, .campo textarea {
+  padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 6px; font: inherit;
+}
+.campo textarea { min-height: 100px; resize: vertical; }
+/* Angular agrega ng-invalid y ng-touched automáticamente a los controles */
+.campo .ng-invalid.ng-touched { border-color: #dc2626; background: #fef2f2; }
+.error-campo { color: #b91c1c; margin-top: 4px; font-size: 0.82rem; }
+.botones-form { display: flex; gap: 8px; margin-top: 8px; }
